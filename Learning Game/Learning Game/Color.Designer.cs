@@ -68,6 +68,7 @@
             // 
             resources.ApplyResources(this.inputTextBox, "inputTextBox");
             this.inputTextBox.Name = "inputTextBox";
+            this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTextBox_KeyDown);
             // 
             // frm_color
             // 
