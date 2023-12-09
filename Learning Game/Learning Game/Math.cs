@@ -125,23 +125,25 @@ namespace Learning_Game
                     MessageBox.Show("Missing Diamond can't leave");
                     diamondMissingMessageShown = true; 
                 }
-
+                    
                 if (player.Bounds.IntersectsWith(door.Bounds))
                 {
-                    if (score > 36)
+                    if (score < 36 || score > 36)
                     {
+                        player.Location = new Point(20, 643);
                         MessageBox.Show("Sorry Wrong Answer");
+                        break;
                     }
-                    else if (score < 36)
+                    else
                     {
-                        MessageBox.Show("Sorry Wrong Answer");
-                    }
-                    else if (DiamondHeld == true && score == 36)
-                    {
-                        MessageBox.Show("YEY YOU GOT MATH RIGHT!!!");
+                        player.Location = new Point(20, 643);
+                        MessageBox.Show("YEY YOU GOT MATH RIGHT!!");
                         GameTime.Stop();
                     }
                 }
+                     
+                 
+                
             }
         }
 
@@ -200,29 +202,30 @@ namespace Learning_Game
                 jump = true;
             }
 
+            if (e.KeyCode == Keys.R)
+            {
+                RstrtGame();
+            }
+
         }
         private void GameClose(object sender, FormClosedEventArgs e)
         {
             Application.Exit(); 
         }
-
         private void RstrtGame()
         {
-
-            
             score = 0;
-         
             moveleft = false;
             moveright = false;
 
             foreach (Control x in this.Controls)
             {
-                if (x is PictureBox && ((string)x.Tag == "coin1" || (string)x.Tag == "coin2" || (string)x.Tag == "Diamond"))
+                if (x is PictureBox && ((string)x.Tag == "coin1" || (string)x.Tag == "coin2" || (string)x.Tag == "diamond"))
                 {
                     x.Visible = true;
                 }
             }
-            player.Location = new Point(12, 632);
+            player.Location = new Point(20, 643);
             GameTime.Start();
         }
 
